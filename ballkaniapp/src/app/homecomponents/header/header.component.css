@@ -1,0 +1,36 @@
+nav  {
+    background-color: #fd7e14;
+}
+
+.container {
+    display: flex;
+        flex-direction: column;
+        align-items: stretch; 
+  }
+  
+  nav {
+    background-color: #fd7e14;
+    width: 100%; 
+    padding: 15px 0; 
+  }
+
+  .icon-bar {
+    width: 100%;
+    background-color: #242424;
+    overflow: auto;
+  }
+  
+  .icon-bar a {
+    float: left;
+    width: 20%;
+    text-align: center;
+    padding: 12px 0;
+    transition: all 0.3s ease;
+    color: white;
+    font-size: 36px;
+  }
+  
+  .icon-bar a:hover {
+    background-color: #000;
+  }
+  

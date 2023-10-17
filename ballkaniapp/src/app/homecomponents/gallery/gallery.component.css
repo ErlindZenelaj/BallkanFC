@@ -1,10 +1,7 @@
-mat-grid-tile {
-    /* background: lightblue; */
-
-  }
-
-.champ {
-    height: 200px;
+.content h1{
+  color: #fd7e14;
+  display: flex;
+  justify-content: center;
 }
 
 .image-container {
