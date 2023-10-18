@@ -1,59 +1,83 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { interval, Observable, startWith, Subject, switchMap, timer } from 'rxjs';
-import { SlideInterface } from '../../../types/slide.interface';
+import { Product } from '../../../domain/product';
+import { ProductService } from '../../../services/productservice';
+
 
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
-  styleUrls: ['./main.component.css'],
+  styleUrls: ['./main.component.scss'],
 
 })
 
-
 export class MainComponent implements OnInit, OnDestroy{
-  @Input() slides: SlideInterface[] = [];
+  products: any;
+  imageLoaded: boolean = true;
 
-  currentIndex: number = 0;
-  timeoutId?: number;
+  responsiveOptions: any[] | undefined;
 
-  ngOnInit(): void {
-    this.resetTimer();
+  hasNoImage(product: any): boolean {
+    return !product.image || product.image === '#';
   }
-  ngOnDestroy() {
-    window.clearTimeout(this.timeoutId);
+
+  constructor(private productService: ProductService) {}
+  ngOnDestroy(): void {
+    throw new Error('Method not implemented.');
   }
-  resetTimer() {
-    if (this.timeoutId) {
-      window.clearTimeout(this.timeoutId);
+
+  ngOnInit() {
+      this.productService.getProductsSmall().then((products) => {
+          this.products = products;
+      });
+
+      this.responsiveOptions = [
+          {
+              breakpoint: '1199px',
+              numVisible: 1,
+              numScroll: 1
+          },
+          {
+              breakpoint: '991px',
+              numVisible: 2,
+              numScroll: 1
+          },
+          {
+              breakpoint: '767px',
+              numVisible: 1,
+              numScroll: 1
+          }
+      ];
+  }
+
+  getSeverity(status: string): string {
+    switch (status) {
+      case 'INSTOCK':
+        return 'success';
+      case 'LOWSTOCK':
+        return 'warning';
+      case 'OUTOFSTOCK':
+        return 'danger';
+      default:
+        return 'info'; // Return a default value for unknown status
     }
-    this.timeoutId = window.setTimeout(() => this.goToNext(), 4000);
   }
+  
 
-  goToPrevious(): void {
-    const isFirstSlide = this.currentIndex === 0;
-    const newIndex = isFirstSlide
-      ? this.slides.length - 1
-      : this.currentIndex - 1;
+  visible: boolean = false;
 
-    this.resetTimer();
-    this.currentIndex = newIndex;
-  }
+  // showDialog() {
+  //   this.visible = true;
+  //   this.products = this.products;
+  // }
 
-  goToNext(): void {
-    const isLastSlide = this.currentIndex === this.slides.length - 1;
-    const newIndex = isLastSlide ? 0 : this.currentIndex + 1;
+  showDialog(product: any) {
+    console.log('Showing product:', product);
+    this.visible = true;
+    this.products = product; // Set the current product
+}
 
-    this.resetTimer();
-    this.currentIndex = newIndex;
-  }
 
-  goToSlide(slideIndex: number): void {
-    this.resetTimer();
-    this.currentIndex = slideIndex;
-  }
+ 
 
-  getCurrentSlideUrl() {
-    return `url('${this.slides[this.currentIndex].url}')`;
-  }
 }
 

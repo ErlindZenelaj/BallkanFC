@@ -5,7 +5,7 @@ import {MatTableModule} from '@angular/material/table';
 @Component({
   selector: 'app-uefa',
   templateUrl: './uefa.component.html',
-  styleUrls: ['./uefa.component.css'],
+  styleUrls: ['./uefa.component.scss'],
   standalone: true,
   imports: [MatGridListModule, MatTableModule],
 

@@ -1,17 +1,50 @@
-<div class="slider">
-  <div (click)="goToPrevious()" class="leftArrow">❰</div>
-  <div class="slide slide-transition" [ngStyle]="{ 'background-image': getCurrentSlideUrl() }"></div>
-  <div (click)="goToNext()" class="rightArrow">❱</div>
-</div>
-<div class="dotsContainer">
-  <div *ngFor="let slide of slides; let slideIndex = index" class="dot" (click)="goToSlide(slideIndex)"></div>
-</div>
-
-
-  <div class="dotsContainer">
-        <div
-          *ngFor="let slide of slides; let slideIndex = index"
-          class="dot"
-          (click)="goToSlide(slideIndex)">
-         </div>
+<div class="grid grid-nogutter surface-section text-800">
+  <div class="col-12 md:col-6 p-6 text-center md:text-left flex align-items-center ">
+      <section>
+          <span class="block text-6xl font-bold mb-4">FC Ballkani</span>
+          <div class="text-6xl text-warning font-bold mb-3">The City Of Champions</div>
+          <p class="mt-0 mb-4 text-700 line-height-3">FC Ballkani the Team from the city of Theranda making history in European Conference League</p>
+          
+          <button pButton label="Learn More" routerLink="/uefa" type="button"  class="mr-3 p-button-warning p-button-outlined"></button>
+          <button pButton pRipple label="About" type="button" class="p-button-outlined  p-button-secondary"></button>
+      </section>
   </div>
+  <div class="col-12 md:col-6 overflow-hidden">
+      <img src="../../../assets/img/BallkaniFans.jpeg" alt="Image" class="md:ml-auto block md:h-full" style="clip-path: polygon(8% 0, 100% 0%, 100% 100%, 0 100%)">
+  </div>
+</div>
+
+<div class="card">
+    <br>
+    <h1 class="text-6xl text-warning font-bold mb-3">Trophies</h1>
+    <p-carousel [value]="products" [numVisible]="3" [numScroll]="3" [circular]="false" [responsiveOptions]="responsiveOptions">
+        <ng-template let-product pTemplate="item">
+            <div class="border-1 surface-border border-round m-2 text-center py-5 px-3">
+                <ng-container *ngIf="hasNoImage(product); else hasImage">
+                    <p-progressSpinner></p-progressSpinner>
+                </ng-container>
+
+                <ng-template #imageTemplate  #hasImage>
+                    <img src="../../../assets/img/{{product.image}}" [alt]="product.name" class="w-6 shadow-2" (load)="imageLoaded = true" />
+                </ng-template>
+                <div>
+                    <h4 class="mb-1">{{ product.name }}</h4>
+                    <h6 class="mt-0 mb-3">{{ product.year}}</h6>
+                </div>
+                <!-- <div class="cards flex justify-content-center">
+                    <p-button (click)="showDialog(products)" icon="pi pi-external-link" [label]="product.buttonLabel"></p-button>
+                    <p-dialog header="Header" [(visible)]="visible" [style]="{ width: '50vw' }">
+                        <iframe [src]="product.iframeSrc" frameborder="0" scrolling="no"></iframe>
+                    </p-dialog>
+                </div> -->
+                
+            </div>
+            
+        </ng-template>
+        
+    </p-carousel>
+ 
+    
+</div>
+
+
