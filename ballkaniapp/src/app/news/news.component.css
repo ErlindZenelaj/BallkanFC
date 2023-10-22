@@ -1,0 +1,21 @@
+.card h1 {
+    display: flex;
+    justify-content: center;
+
+}
+.cards{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+p-card{
+    width: 400px;
+    margin: 10px; /* Optional: Add margin for spacing between cards */
+    display: flex;
+}
+
+p-card img{
+    width: 430px;
+    height: 400px;
+}

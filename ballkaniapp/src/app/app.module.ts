@@ -9,7 +9,6 @@ import { KitsComponent } from './homecomponents/kits/kits.component';
 import { FooterComponent } from './homecomponents/footer/footer.component';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { UEFAComponent } from './uefa/uefa.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { StyleClassModule} from 'primeng/styleclass';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -32,7 +31,6 @@ import { ColorPickerModule } from 'primeng/colorpicker';
 import { ContextMenuModule } from 'primeng/contextmenu';
 import { DataViewModule } from 'primeng/dataview';
 import { VirtualScrollerModule } from 'primeng/virtualscroller';
-import { DialogModule } from 'primeng/dialog';
 import { DividerModule } from 'primeng/divider';
 import { DockModule } from 'primeng/dock';
 import { DragDropModule } from 'primeng/dragdrop';
@@ -78,7 +76,6 @@ import { SlideMenuModule } from 'primeng/slidemenu';
 import { SliderModule } from 'primeng/slider';
 import { SpeedDialModule } from 'primeng/speeddial';
 import { SpinnerModule } from 'primeng/spinner';
-import { SplitButtonModule } from 'primeng/splitbutton';
 import { SplitterModule } from 'primeng/splitter';
 import { StepsModule } from 'primeng/steps';
 import { TabMenuModule } from 'primeng/tabmenu';
@@ -101,6 +98,15 @@ import { CardModule } from 'primeng/card';
 import { BlockUIModule } from 'primeng/blockui';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { ProductService } from '../services/productservice';
+import { PlayerService } from '../services/playerservice';
+import { DialogModule } from 'primeng/dialog';
+import { SplitButtonModule } from 'primeng/splitbutton';
+import { LeagueComponent } from './league/league.component';
+import { WidgetComponent } from './widget/boradage-widget-container.component';
+import { NewsComponent } from './news/news.component';
+import { UEFAComponent } from './uefa/uefa.component';
+
+
 
 
 @NgModule({
@@ -110,18 +116,26 @@ import { ProductService } from '../services/productservice';
         MainComponent,
         FooterComponent,
         HomepageComponent,
+        LeagueComponent,
+        WidgetComponent,
+        
+
+        
 
     ],
-    providers: [ProductService],
+    exports: [NewsComponent],
+    providers: [ProductService,PlayerService],
     bootstrap: [AppComponent],
     imports: [
+        NewsComponent,
+        UEFAComponent,
+        SplitButtonModule,
         FormsModule,
         BrowserModule,
         AppRoutingModule,
         GalleryComponent,
         KitsComponent,
         RouterModule,
-        UEFAComponent,
         StyleClassModule,
         ButtonModule,
         SplitterModule,
@@ -218,7 +232,9 @@ import { ProductService } from '../services/productservice';
         TreeSelectModule,
         TreeTableModule,
         AnimateModule,
-        CardModule
+        CardModule,
+        SplitterModule,
+        DialogModule
         
     ],
     

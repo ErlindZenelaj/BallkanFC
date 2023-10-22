@@ -1,0 +1,11 @@
+
+.card iframe{
+    width:100%;
+    height: 50vh;
+}
+
+p-splitter{
+    height: 50%;
+    /* background:linear-gradient(90deg, #FD7E14, rgb(176, 87, 14)); */
+}
+

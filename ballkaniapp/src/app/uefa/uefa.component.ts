@@ -1,42 +1,43 @@
-import { Component } from '@angular/core';
-import { MatGridListModule } from '@angular/material/grid-list';
-import {MatTableModule} from '@angular/material/table';
+import { Component, NgModule } from '@angular/core';
+import { SplitterModule } from 'primeng/splitter';
+import { Player } from 'src/domain/player';
+import { PlayerService } from 'src/services/playerservice';
+import { DialogModule } from 'primeng/dialog';
+import { TableModule } from 'primeng/table';
+import { ButtonModule } from 'primeng/button';
+import { NewsComponent } from '../news/news.component';
+
+
 
 @Component({
   selector: 'app-uefa',
   templateUrl: './uefa.component.html',
   styleUrls: ['./uefa.component.scss'],
   standalone: true,
-  imports: [MatGridListModule, MatTableModule],
+  imports: [SplitterModule, DialogModule, TableModule, ButtonModule,NewsComponent],
+  
 
 })
 
 
-
-
-
 export class UEFAComponent {
-displayedColumns: string[] = ['position', 'name', 'team', 'symbol','goals','assist'];
-dataSource = ELEMENT_DATA;
+
+  players!: Player[];
+
+  dialogVisible: boolean = false;
+
+  constructor(private playerService: PlayerService) {}
+
+  ngOnInit() {
+      this.playerService.getPlayersMedium().then((data) => {
+          this.players = data;
+      });
+  }
+
+  showDialog() {
+      this.dialogVisible = true;
+  }
 
 }
-
-
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  team: string;
-  symbol: string;
-  goals: number;
-  assist: number;
-}
-
-const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, name: 'Hamidi W.', team: "FC Ballkani", symbol: 'ST',goals: 1, assist: 0},
-  {position: 2, name: 'Helium', team: "FC Ballkani", symbol: 'MD', goals: 1, assist: 0},
-  {position: 3, name: 'Lithium', team: "FC Ballkani", symbol: 'MD', goals: 0, assist: 1},
-
-];
-
 
 
