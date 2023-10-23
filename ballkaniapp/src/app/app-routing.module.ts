@@ -7,9 +7,9 @@ import { NewsComponent } from './news/news.component';
 
 const routes: Routes = [
   { path: '', component: HomepageComponent},
+  { path: 'homepage', component: HomepageComponent },
   { path: 'league', component: LeagueComponent },
   { path: 'uefa', component: UEFAComponent },
-  { path: 'homepage', component: HomepageComponent },
   { path: 'news', component: NewsComponent },
 
 

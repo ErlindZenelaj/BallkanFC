@@ -5,10 +5,9 @@ import { Component, OnInit} from '@angular/core';
   templateUrl: './league.component.html',
   styleUrls: ['./league.component.css']
 })
-export class LeagueComponent implements OnInit {
 
+export class LeagueComponent  {
 
+  
 
-  ngOnInit() {
-  }
 }

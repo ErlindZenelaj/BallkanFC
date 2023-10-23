@@ -21,7 +21,7 @@ import { NewsComponent } from '../news/news.component';
 
 
 export class UEFAComponent {
-
+  
   players!: Player[];
 
   dialogVisible: boolean = false;
